@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<html>
+<head>
+<title>Plan input</title>
+</head>
+
+<body>
+
+Let's plan it!
+
+<form action   = "{% url 'appWorkChunkPlanner:plan' %}"
+      method   = "post">
+{% csrf_token %}
+
+{{ WorkChunk_Plan_Form.as_p }}
+
+<p><input type="submit" value="Submit"></p>
+</form>
+
+</body>
+</html>

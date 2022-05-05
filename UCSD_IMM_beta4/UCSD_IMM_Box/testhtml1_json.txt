@@ -1,0 +1,1 @@
+{"HTMLText": "\n<html>\n<head>\n<title>Probably worked</title>\n</head>\n\n<body>\n\n<H1>Probably worked</H1>\n\nFile OK html display probably worked.<br/><br/>\n\n<a href=\"/entry/\">&#8658;</a>Return to the table of contents\n\n</body>\n</html>\n"}

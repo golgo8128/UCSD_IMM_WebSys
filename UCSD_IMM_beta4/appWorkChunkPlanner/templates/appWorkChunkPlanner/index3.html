@@ -1,0 +1,94 @@
+{% load staticfiles %}
+
+{% load tz %}
+{% get_current_timezone as TIME_ZONE %}
+{% localtime on %}
+
+<html>
+<head>
+<link href="{% static "appWorkChunkPlanner/Styles/rs_basic_style1_2.css" %}" rel="stylesheet" type="text/css">
+<title>Work Chunk Planner</title>
+</head>
+<body>
+<div id="whole_user_area">
+   <div id="user_header">
+<H1>Work Chunk Planner</H1>
+<p>User: {{ user.get_username }} &nbsp; Time: {% now "F j, Y H:i" %} ({{ TIME_ZONE }})</p>
+   </div>
+   <div class="user_main">
+
+<H2>Submit a new plan</H2>
+
+<p>Click <a href="{% url 'appWorkChunkPlanner:plan' %}">HERE</a>.</p>
+
+   </div>
+   
+   <div class="user_main">
+
+<H2>Planned work chunks</H2>
+
+<DL>
+{% for planobj in planobjs %}
+   <DT>#{{ planobj.id }} [{{ planobj.begin_time|date:"Y M j (D) H:i"  }} -
+   {% if planobj.bool_plan_spans_different_days %}
+      {{ planobj.finish_time|date:"Y M j (D) H:i" }}   
+   {% else %}
+      {{ planobj.finish_time|date:"H:i" }}   
+   {% endif %}
+   ] {{ planobj.plan_title }}</DT>
+   <DD>Status:
+   {% if planobj.bool_completed %}
+      <span class="completed">Completed.</span> 
+   {% elif planobj.bool_canceled %}
+      <span class="canceled">Canceled</span>
+   {% else %}
+      <span class="incomplete">Incomplete</span>
+   {% endif %}
+   {% if planobj.bool_not_started_yet and not planobj.bool_canceled %}
+      <span class="not_started_yet">Not started yet</span>
+   {% endif %}
+   {% if planobj.bool_started_late %}
+      <span class="late_start">Late start</span>
+   {% endif %}
+   {% if planobj.bool_started_early %}
+      <span class="early_start">Early start</span>
+   {% endif %}
+   {% if planobj.bool_finished_early %}
+      <span class="early_finish">Early finish</span>
+   {% endif %}
+   {% if planobj.bool_finished_late %}
+      <span class="late_finish">Late finish</span>
+   {% endif %}
+   {% if planobj.bool_took_longer %}
+      <span class="took_longer">Took longer</span>
+   {% endif %}
+   {% if planobj.bool_took_shorter %}
+      <span class="took_shorter">Took shorter</span>
+   {% endif %}
+   </DD>
+   <DD>
+   <a href="{% url 'appWorkChunkPlanner:plan_info' planobj.id %}">View plan</a> 
+   {% if planobj.worked_records %}
+      {% if not planobj.bool_completed and not planobj.bool_canceled %}
+         | <a href="{% url 'appWorkChunkPlanner:record' planobj.id %}">Input record</a> ({{ planobj.worked_records|length }})
+      {% endif %}
+      {% if planobj.served_evals %}
+         | <a href="{% url 'appWorkChunkPlanner:serve' planobj.id %}">Input service evaluation</a> ({{ planobj.served_evals|length }}) 
+      {% else %}
+         | <a href="{% url 'appWorkChunkPlanner:serve' planobj.id %}">Input service evaluation</a>  
+      {% endif %}
+   {% elif not planobj.bool_canceled %}
+      | <a href="{% url 'appWorkChunkPlanner:record' planobj.id %}">Input record</a> 
+   {% endif %}
+   </DD>
+{% endfor %}
+</DL>
+
+   </div>
+</div>
+
+</body>
+</html>
+
+{% endlocaltime %}
+

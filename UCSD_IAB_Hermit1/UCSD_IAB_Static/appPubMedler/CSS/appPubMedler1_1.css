@@ -1,0 +1,41 @@
+
+#header1 {
+	
+	margin:7px;
+	padding:3px;
+
+}
+
+#header1 div#header1_main1 {
+	
+    margin: 1px;
+	font-size: xx-large;
+	
+
+}
+
+#header1 div#header1_sub1 {
+	
+    margin: 1px;
+	font-size: medium;
+
+}
+
+#maindish {
+	
+	margin:7px;
+	padding:3px;	
+	
+}
+
+#maindish p.litnote1 {
+	
+	color: green;
+	
+}
+
+#maindish div.example_input1 {
+	
+	background-color: #DEDEDE;
+	
+}

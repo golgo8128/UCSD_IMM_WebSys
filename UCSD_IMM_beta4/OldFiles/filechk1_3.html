@@ -1,0 +1,62 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>Waiting for result file generation</title>
+
+<script src="{% static "common/JS/Lib/jquery-1.11.3.min.js" %}"></script>
+<script type="text/javascript" src="{% static "common/JS/Craft/WaitDocks1_9.js" %}"></script>
+<script>
+function filegenchk(){
+
+	// document.getElementById("console1").innerHTML = wdock1.counter + "/" + this.countmax + " " + this.itimeintrv;
+	
+	$.getJSON("{% url 'DownloadFileGenChk:filecheck_server' chkfilename %}",
+			  function( iobj ) {
+		
+		document.getElementById("timer1").innerHTML = new Date();
+		
+		if(iobj.FileFound == "True"){
+			wdock1.invoke_stop_sequence();
+		}
+		
+	});	
+	
+}
+
+function dock_stop(){
+	
+	document.getElementById("message1").innerHTML = "File {{ chkfilename }} ready";
+	window.location.replace("{% url 'DownloadFileGenChk:file_download' chkfilename %}");
+
+}
+
+function timeout_action(){
+	
+	window.location.replace("{% url 'DownloadFileGenChk:timeout' %}");
+	
+}
+
+
+$(function() {
+	wdock1 = new WaitDocks(filegenchk,
+                           dock_stop,
+                           timeout_action,
+                           "waitdockloc1",
+                           6000, // proc_millisec
+                           300, // itimeintrv
+                           180000); // cmax_millisec
+	wdock1.loop();
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="timer1"></div>
+<div id="console1"></div>
+<div id="waitdockloc1">-</div>
+<div id="message1"></div>
+
+</body>
+</html>

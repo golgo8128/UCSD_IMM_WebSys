@@ -1,0 +1,26 @@
+
+div.user_main {
+
+    background-image:    url("../Images/chalk_board_kn_simple1_3.jpg");
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;              /* optional, center the image */
+
+    padding: 16px;
+    color: #e0e0e0;
+	font-size: 18px;
+
+}
+
+div.user_main H1 {
+	
+	font-size: 32px;
+	
+}
+
+div.user_main H2 {
+	
+	font-size: 25px;
+	
+}
+

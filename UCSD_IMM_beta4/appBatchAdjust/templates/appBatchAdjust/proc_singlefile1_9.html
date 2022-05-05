@@ -1,0 +1,127 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>Batch Adjustment of Metabolome Data</title>
+</head>
+<body>
+<img src="{% static "common/Images/Logo/KITT_Scanner16.gif" %}" width="595pt" height="30pt"/>
+<H1>Batch Adjustment of Metabolome Data</H1>
+&spades; For single metabolome data table file
+<hr>
+
+<div style="background-color : #CCCCCC">
+<br>
+<form action   = "{% url 'appBatchAdjust:invoke' %}"
+      method   = "post">
+<!-- enctype = "multipart/form-data" may avoid browser to hang while in process -->
+{% csrf_token %}
+<p>Control sample name prefix:
+<input type="text" name="ctrlsampnameprefix" size = 10 value="MC"/>
+</p>
+<p>Representative value calculation
+<select name="mn_func_sel">
+<option value="median">Median</option>
+<option value="mean">Mean</option>
+</select>
+</p>
+
+<p>Low value processing for metabolite levels
+   <DL>
+   <DT>Control</DT>
+   <DD>
+      <DL>
+      <DT>Before batch adjustment</DT>
+      <DD>Lower detection limit:    <input type="text" name="metabdetectllim_ctrl_bfr" size = 10 value="0.1"/>      
+          &nbsp;
+          Small quantity to assign: <input type="text" name="metabasnsmallqt_ctrl_bfr" size = 10 value="0.001"/> 
+      </DD>
+      <DT>After batch adjustment</DT>
+      <DD>Lower detection limit:    <input type="text" name="metabdetectllim_ctrl_aft" size = 10 value=""/>      
+          &nbsp;
+          Small quantity to assign: <input type="text" name="metabasnsmallqt_ctrl_aft" size = 10 value=""/>  
+      </DD>
+      </DL>
+   </DD>
+   <DT>Actual</DT>
+   <DD>
+      <DL>
+      <DT>Before batch adjustment</DT>
+      <DD>Lower detection limit:    <input type="text" name="metabdetectllim_act_bfr" size = 10 value=""/>      
+          &nbsp;
+          Small quantity to assign: <input type="text" name="metabasnsmallqt_act_bfr" size = 10 value=""/> 
+      </DD>
+      <DT>After batch adjustment</DT>
+      <DD>Lower detection limit:   <input type="text" name="metabdetectllim_act_aft" size = 10 value="0.1"/> 
+          &nbsp;
+          Small quantity to assign: <input type="text" name="metabasnsmallqt_act_aft" size = 10 value="0.001"/>    
+      </DD>
+      </DL>
+   </DL>   
+</p>
+
+<DL>
+<DT>Batch exclusion criteria</DT>
+
+
+<DD>Threshold of coefficient of variance (CV) of controls within each batch:
+<input type="text" name="ctrl_cv_thres" size = 10 value="1.0">
+</DD>
+
+<DD>Factor to identify outlier of within-batch control median with respect to other control medians in different batches:
+<input type="text" name="ctrlmedian_outfactor" size = 10 value="1.5">
+</DD>
+
+</DL>
+
+<p>Comma in number representation:
+<input type="checkbox" name="commaasdpoint" value="commadec" checked>
+Regard comma "," as a decimal point<br>
+
+<p><U>Select metabolome data file</U>:
+{% for filobj in fupobjs %}
+<p>
+<input type="radio" name="selfilobj" value="{{ filobj.id }}"/>
+<B>{{ filobj.ifilename }}</B> - {{ filobj.iproj }} [ {{ filobj.itimestamp_upload }} ]<br/> {{ filobj.idescription }}
+</p>
+{% endfor %}
+
+</p>
+<p><input type="submit" value="Submit"></p>
+</form>
+</div>
+
+<H2>Brief Introduction</H2>
+
+<p>The basic idea is as follows:<br/>
+<img src="{% static "appBatchAdjust/Images/appBA1_7_basicidea1.png" %}"/>
+</p>
+
+<p>More accurate methodology can be found
+<a href="{% static "appBatchAdjust/PDF/IMM_GCMS_batch_adjust1_6.pdf" %}">here</a>.</p>
+
+<p>
+How to see the plot:<br/>
+<img src="{% static "appBatchAdjust/Images/appBA1_7_example1.png" %}"/>
+</p>
+
+<H2>Data preparation</H2>
+<UL>
+<LI>Prepare metabolome data table.</LI>
+<UL>
+<LI>The first column should contain batch names. The header of the column should be "Batch No".</LI>
+<LI>The second column should contain sample IDs. The header of the column should be "Sample ID".</LI>
+</UL>
+<br/>
+<img src="{% static "appBatchAdjust/Images/metabsinglefile_sample1.jpg" %}"/>
+<br/><br/>
+<LI>The spreadsheet should be saved as tab-delimited text file, <U>NOT as an Excel file</U>.
+Sample file: <a href="{% static "appBatchAdjust/Txt/metabsinglefile_sample1.txt" %}">here</a></LI>
+</UL>
+
+&nbsp; <img src="{% static "appBatchAdjust/Images/make_tsv_excel1_2_1.jpg" %}"/>
+
+<hr>
+Contact: golgo8128@yahoo.co.jp<br/>
+<!-- {{ DIR_UCSD_IMM_WORK }} -->
+</body>
+</html>

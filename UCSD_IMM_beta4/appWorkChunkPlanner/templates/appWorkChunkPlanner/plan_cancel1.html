@@ -1,0 +1,26 @@
+{% load staticfiles %}
+
+<html>
+<head>
+<title>Work Chunk Plan Cancel</title>
+</head>
+
+<body>
+
+<H1>Work Chunk Plan Cancel</H1>
+
+Canceling your plan "{{ wc_plan }}"{{ afterwork }}...
+
+<form method="post" action="">
+{% csrf_token %}
+
+<DL>
+<DT>Cancel note</DT>
+<DD><textarea name="plan_cancel_note" rows="10" cols="40"></textarea></DD>
+</DL>
+
+<p><input type="submit" value="Submit"></p>
+</form>
+
+</body>
+</html>

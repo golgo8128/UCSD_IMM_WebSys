@@ -1,0 +1,29 @@
+{% load staticfiles %}
+
+<html>
+<head>
+<title>Batch adjustment result ready</title>
+</head>
+
+<body>
+
+<H1>Result of batch adjustment</H1>
+
+<UL>
+<LI><a href="{{ PDFfile }}">Plot</a> of adjusted metabolite levels of control samples in each batch</LI>
+<LI><a href="{{ XLSfile }}">Spreadsheet</a> of adjusted metabolite levels of control samples in each batch</LI>
+<LI>Tab-separated files (TSV files)
+   <UL>
+   <LI><a href="{{ irawfile }}">Raw input</a></LI>
+   <LI><a href="{{ iTSVfile }}">Batch-unadjusted</a></LI>
+   <LI><a href="{{ oTSVfile }}">Batch-adjusted</a></LI>   
+   </UL>
+</LI>
+</UL>
+<!-- {{ MEDIA_URL }} -->
+
+
+<a href="{% url 'UCSD_IMM_ToC:entry' %}">&#8658;</a>Return to the table of contents
+
+</body>
+</html>

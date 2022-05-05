@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HERMIT copy map</title>
+<link href="{% static "appNichoAnu/CSS/map_Anurag1_2.css" %}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header1">
+   <div id="header1_sub1">
+      <div id="header1_sub1_anu">
+         <img src="{% static "appNichoAnu/Images/Anurag2016_3mini.jpg" %}" width=96px height=84px/>
+      </div>
+      <div id="header1_sub1_title1">
+         <span class="red">AN</span>
+         <span class="red">U</span>ltimate <span class="red">R</span>ough
+         <span class="red">AG</span>gregation of Metabolic Map
+      </div>
+      <div id="header1_sub1_title2">
+         Highly Energetic Republic Managing Information Technology (HERMIT)
+      </div>
+      <div class="float_clear"></div>
+   </div>
+</div>
+<div id="maindish">
+
+<!-- {{ message|safe }} -->
+
+<H2>Material sources</H2>   
+
+<DL>
+<DT>Base metabolic pathway</DT>
+<DD><a href="http://www.sigmaaldrich.com/life-science/metabolomics/learning-center/metabolic-pathways.html">Nicholson's Metabolic Pathway Chart</a></DD>
+<DT>HERMIT icon</DT>
+<DD><a href="http://illust.okinawa/k-sea/e629.html">Illust Okinawa</a></DD>
+</DL>
+
+
+    
+<hr>    
+
+ <div id="below_hr">
+  <p>
+  <span class="link1"><a href="{% url 'appNichoAnu:index' %}">Top page</a></span>  
+  </p>
+ </div>
+
+</div>
+
+<div id="footer1">
+HERMIT 2016, greatly inspired by
+<a href="http://www.sigmaaldrich.com/life-science/metabolomics/learning-center/metabolic-pathways.html">
+Nicholson's Metabolic Pathway Chart</a>.
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{% load staticfiles %}
+{% load tz %}
+{% get_current_timezone as TIME_ZONE %}
+{% localtime on %}
+
+<html>
+<head>
+<title>Work Chunk Plan Accepted</title>
+</head>
+
+<body>
+
+<p>Plan accepted!</p>
+
+<p><a href="{% url 'appWorkChunkPlanner:index' %}">&#8594;</a> Go to Work Chunk Planner Top Page</p>
+
+</body>
+</html>
+
+{% endlocaltime %}
+
+

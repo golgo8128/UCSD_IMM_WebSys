@@ -1,0 +1,76 @@
+{% load staticfiles %}
+
+<html>
+<head>
+<title>Batch adjustment result ready</title>
+</head>
+
+<body>
+
+<H1>Result of batch adjustment</H1>
+
+<UL>
+<LI><a href="{{ PDFfile }}">Plot</a> of adjusted metabolite levels of control samples in each batch</LI>
+<LI><a href="{{ XLSfile }}">Spreadsheet</a> of adjusted metabolite levels of control samples in each batch</LI>
+<LI>Tab-separated files (TSV files)
+   <UL>
+   <LI><a href="{{ irawfile }}">Raw input</a></LI>
+   <LI><a href="{{ iTSVfile }}">Batch-unadjusted</a></LI>
+   <LI><a href="{{ oTSVfile }}">Batch-adjusted</a></LI>   
+   </UL>
+</LI>
+</UL>
+<!-- {{ MEDIA_URL }} -->
+
+<H1>Given parameters</H1>
+<DL>
+<DT>Method for representative value calculation</DT>
+<DD><B>{{ mn_func_sel }}</B></DD>
+<DT>Low value processing for metabolite levels</DT>
+<DD>
+   <DL>
+   <DT>Control</DT>
+   <DD>
+      <DL>
+      <DT>Before batch adjustment</DT>
+      <DD>Lower detection limit: <B>{{ metabdetectllim_ctrl_bfr }}</B>     
+          &nbsp;
+          Small quantity to assign: <B>{{ metabasnsmallqt_ctrl_bfr }}</B>
+      </DD>
+      <DT>After batch adjustment</DT>
+      <DD>Lower detection limit: <B>{{ metabdetectllim_ctrl_aft }}</B>
+          &nbsp;
+          Small quantity to assign: <B>{{ metabasnsmallqt_ctrl_aft }}</B>
+      </DD>
+      </DL>
+   </DD>
+   <DT>Actual</DT>
+   <DD>
+      <DL>
+      <DT>Before batch adjustment</DT>
+      <DD>Lower detection limit: <B>{{ metabdetectllim_act_bfr }}</B>  
+          &nbsp;
+          Small quantity to assign: <B>{{ metabasnsmallqt_act_bfr }}</B>
+      </DD>
+      <DT>After batch adjustment</DT>
+      <DD>Lower detection limit: <B>{{ metabdetectllim_act_aft }}</B>
+          &nbsp;
+          Small quantity to assign: <B>{{ metabasnsmallqt_act_aft }}</B>
+      </DD>
+      </DL>
+   </DL>   
+</DD>
+
+<DT>Threshold of coefficient of variance (CV) of controls within each batch</DT>
+<DD><B>{{ ctrl_cv_thres }}</B></DD>
+<DT>Factor to identify median of controls within a batch that is outlier with respect to other control medians in different batches</DT>
+<DD><B>{{ ctrlmedian_outfactor }}</B></DD>
+</DL>
+
+
+<hr/>
+
+<a href="{% url 'UCSD_IMM_ToC:entry' %}">&#8658;</a>Return to the table of contents
+
+</body>
+</html>

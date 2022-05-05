@@ -1,0 +1,158 @@
+{% load staticfiles %}
+{% load tz %}
+{% get_current_timezone as TIME_ZONE %}
+{% localtime on %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HERMIT copy map</title>
+<link href="{% static "appNichoAnu/CSS/map_Anurag1_2.css" %}" rel="stylesheet" type="text/css">
+</head>
+
+<!-- 
+Node & Edge number stats
+Access count
+Login
+-->
+
+
+<body>
+<div id="header1">
+   <div id="header1_sub1">
+      <div id="header1_sub1_anu2">
+         <img src="{% static "appNichoAnu/Images/hermit_symbol_anim1.gif" %}"/>
+         <!-- This was take from http://illust.okinawa/k-sea/e629.html
+              Can be switched to Anurag2016_3mini.jpg -->
+      </div>
+      <div id="header1_sub1_title1">
+         <!--  
+         <span class="red">AN</span>
+         <span class="red">U</span>ltimate <span class="red">R</span>ough
+         <span class="red">AG</span>gregation of Metabolic Map
+         -->
+         An Ultimate Rough Aggregation of Metabolic Map
+      </div>
+      <div id="header1_sub1_title2">
+         Highly Energetic Republic Managing Information Technology (HERMIT)
+      </div>
+      <div class="float_clear"></div>
+   </div>
+</div>
+<div id="maindish">
+
+<!-- {{ message|safe }} -->
+<!--
+Debug mode: {{ settings.DEBUG }} Apache user: {{ apache_user }}
+-->
+
+<!-- <H2>Overview</H2> -->
+ <img src="{% static "appNichoAnu/Images/hermit_symbol1_empty1_3.png" %}" width="291" height="46"/>
+
+
+<p>Metabolism is a chemical conversion of substances in the cell.
+For example, after eating, carbohydrates in the food will be turned into
+glucose and it will be uptaken from intestinal tract. Then the glucose will
+be chemically converted to ATP, a molecule that stores energy for our body,
+through multiple steps.
+
+The metabolisms are very important
+for the cells to live, and provide a lot of information
+on how the organisms maintain their lives. In fact, metabolic disorders arise
+from abnormal metabolism in the human body.
+Thus, huge amount of researches have been conducted until today
+by research institutes over the world to elucidate the metabolic pathways
+inside the cells.
+</p>
+
+<p>
+There are a lot of excellent publicly available databases that store information
+about metabolites or metabolic pathways. However, most of the information
+out there are unnecessary for us, and a chunk of information which is
+really necessary for the purpose of our laboratory is often split into multiple databases. 
+</p>
+
+<p>
+Highly Energetic Republic Managing Information Technology group (HERMIT)
+is trying to integrate these separated information that are necessary for the activities of
+our laboratory into our own database,
+and to add our own information which we got from our research.
+
+The stored information can be browsed and modified through our custom interface.
+</p>
+
+<!--
+, and
+to create the famous metabolic pathway map on top of
+<a href="http://www.cytoscape.org">
+Cytoscape
+</a>
+-->
+
+<!--  
+<p>
+This project is supported by a student from Pacific Ridge School, 10th grader (as of 2015).
+</p>
+-->
+
+<p>
+Why don't you start with browsing information about
+<a href="{% url 'appNichoAnu:node_vis_id_info' 'HMDB00094' %}">
+citric acid</a>?
+</p>
+   
+<img class="place_in_middle" src="{% static "appNichoAnu/Images/food_fate1_2eng.png" %}"/>   
+   
+<H2>Statistics</H2>   
+
+<H3>Network size</H3>
+
+Currently, our metabolic map contains
+<B>{{ NichoNode.number_of_nodes }}</B> nodes and
+<B>{{ NichoEdge.number_of_edges }}</B> edges among these nodes.
+
+
+<H3>Number of hosts that visited this site</H3>
+
+<DL>
+<DT>Within a week</DT>
+<DD><B>{{ acount_minus_wk1 }}</B></DD>
+<DT>From 2 weeks before to 1 week before</DT>
+<DD>{{ acount_minus_wk2 }}</DD>
+<DT>From 3 weeks before to 2 weeks before</DT>
+<DD>{{ acount_minus_wk3 }}</DD>
+</DL>
+
+<hr>
+
+ <div id="below_hr">
+  <p>
+  <span class="link1"><a href="{% url 'appNichoAnu:pub_db_tools' %}">Cited DBs &amp; tools</a></span>  
+  <span class="link1">Plan</span>
+  <span class="link1"><a href="{% url 'appNichoAnu:survey' %}">Study and Survey</a></span>
+  </p>
+  <p>
+  <span class="link1"><a href="{% url  'appNichoAnu:member' %}">Member</a></span>
+  <span class="link1"><a href="{% url 'appNichoAnu:material_src' %}">Material sources</a></span>
+  <span class="link1">Technical notes</span>
+  <span class="link1"><a href="{% url 'appNichoAnu:history' %}">History</a></span>
+  <span class="link1"><a href="{% url 'appNichoAnu:blog' %}">Blog</a></span>
+  <span class="link2">
+  <a href="{% url 'AccAuth_TZ:entry' %}?next={% url 'appNichoAnu:index' %}">.</a>
+  </span>
+  </p>
+ </div>
+
+</div>
+
+<div id="footer1">
+HERMIT 2016, greatly inspired by
+<a href="http://www.sigmaaldrich.com/life-science/metabolomics/learning-center/metabolic-pathways.html">
+Nicholson's Metabolic Pathway Chart</a>.
+</div>
+
+</body>
+
+</html>
+
+{% endlocaltime %}

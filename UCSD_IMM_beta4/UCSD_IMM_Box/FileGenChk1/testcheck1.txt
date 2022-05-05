@@ -1,0 +1,9 @@
+<html>
+<head>
+<title>File generation check okay</title>
+</head>
+<body>
+<H1>This is a test</H1>
+Displaying file okay message seems to be working ...
+</body>
+</html>

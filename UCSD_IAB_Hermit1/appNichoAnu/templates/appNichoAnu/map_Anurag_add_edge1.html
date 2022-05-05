@@ -1,0 +1,115 @@
+{% load staticfiles %}
+{% load tz %}
+{% get_current_timezone as TIME_ZONE %}
+{% localtime on %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HERMIT copy map</title>
+<link href="{% static "appNichoAnu/CSS/map_Anurag1_2.css" %}" rel="stylesheet" type="text/css">
+
+<script>
+function SwapEdgeAnu()
+{
+  <!-- id_node_src/tgt should be replaced (generalized?) -->
+	
+  var node_src_sel_val = document.getElementById('{{ edge_form.node_src.auto_id }}').value;
+  document.getElementById('{{ edge_form.node_src.auto_id }}').value = document.getElementById('{{ edge_form.node_tgt.auto_id }}').value;
+  document.getElementById('{{ edge_form.node_tgt.auto_id }}').value = node_src_sel_val;
+}
+</script>
+
+</head>
+
+<body>
+<div id="header1">
+   <div id="header1_sub1">
+      <div id="header1_sub1_anu">
+         <img src="{% static "appNichoAnu/Images/hermit_illust629.png" %}" width=96px height=84px/>
+         <!-- This was take from http://illust.okinawa/k-sea/e629.html
+              Can be switched to Anurag2016_3mini.jpg -->
+      </div>
+      <div id="header1_sub1_title1">
+         <!--  
+         <span class="red">AN</span>
+         <span class="red">U</span>ltimate <span class="red">R</span>ough
+         <span class="red">AG</span>gregation of Metabolic Map
+         -->
+        An Ultimate Rough Aggregation of Metabolic Map
+      </div>
+      <div id="header1_sub1_title2">
+         Highly Energetic Republic Managing Information Technology (HERMIT)
+      </div>
+      <div class="float_clear"></div>
+   </div>
+</div>
+<div id="maindish">
+
+<img class="place_in_middle" src="{{ image_url }}"/>   
+
+<H2>Adding edge</H2>
+
+<form method="post" action="">
+{% csrf_token %}
+
+<DL>
+<DT>Edge ID </DT>
+<DD>{{ edge_form.edge_id }}</DD>
+<DT>Connection</DT>
+<DD>
+Source Node: {{ edge_form.node_src }}
+&nbsp;
+Destination Node: {{ edge_form.node_tgt }}
+
+&nbsp;
+<input id="swap_edge_dir" onclick="SwapEdgeAnu();" type="button" value="Swap" />
+
+</DD>
+<DD>
+Reaction Type: {{ edge_form.classification }}
+&nbsp;
+Reaction Category: {{ edge_form.categorization_I }}
+</DD>
+<DD>
+Directed: {{ edge_form.is_directed }}
+</DD>
+
+<DT>Annotation</DT>
+<DD>{{ edge_form.annotation }}</DD>
+<DT>EC Numbers</DT>
+<DD>{{ edge_form.ecnums }} (Multiple EC numbers should be separated by comma(s))</DD>
+<DT>Coupled Reactions</DT>
+<DD>{{ edge_form.coupled_reaction_note }}</DD>
+<DT>Source Public Database | Entry ID</DT>
+<DD>{{ edge_form.pubdb_name }} | {{ edge_form.pubdb_id }}</DD>
+<DT>Note</DT>
+<DD>{{ edge_form.note }}</DD>
+</DL>
+
+{% if not request.user.is_anonymous and request.user.is_authenticated %}
+<p><input type="submit" value="Submit"></p>
+{% endif %}
+
+</form>
+
+<hr>
+
+ <div id="below_hr">
+  <span class="link1"><a href="{% url 'appNichoAnu:index' %}">Go back to top page</a></span>
+ </div>
+
+                                       
+</div>
+
+<div id="footer1">
+HERMIT 2016, greatly inspired by
+<a href="http://www.sigmaaldrich.com/life-science/metabolomics/learning-center/metabolic-pathways.html">
+Nicholson's Metabolic Pathway Chart</a>.
+</div>
+</body>
+
+</html>
+
+{% endlocaltime %}
+

@@ -1,0 +1,35 @@
+{% load staticfiles %}
+
+<html>
+
+<head>
+<title>String input</title>
+</head>
+
+<body>
+<H1>Simple String Encryption</H1>
+
+<form action   = "{% url 'appStrEncrypt:strconv' %}"
+      method   = "post">
+{% csrf_token %}
+<p>
+Input string:
+<input type="text" name="istring" size = 36/>
+</p>
+
+<p>Spaces at the end will be discarded.</p>  
+      
+<p>
+
+<select name="direncdec">
+<option value="Encryption">Encrypt</option>
+<option value="Decryption" selected>Decrypt</option>
+</select>
+</p>
+      
+<p><input type="submit" value="Submit"></p>
+</form>
+
+
+</body>
+</html>

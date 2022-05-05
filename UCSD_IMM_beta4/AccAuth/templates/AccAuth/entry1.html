@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Entry</title>
+</head>
+
+<body>
+<h1>User Account Authentication</h1>
+
+{% if auth_success == False %}
+Authentication failed.
+{% elif acc_activ == False %}
+This account is inactive.
+{% endif %}
+
+<form action="" method="post">
+{% csrf_token %}
+{{ accauth_info_input }}
+<br/>
+<input type="submit" value="Authenticate">
+</form>
+
+</body>
+</html>

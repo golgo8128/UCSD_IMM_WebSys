@@ -1,0 +1,116 @@
+{% load staticfiles %}
+
+<html>
+<head>
+<title>Plan input</title>
+
+<link rel="stylesheet" href="{% static "common/JS/Lib/jquery-ui-1.11.4/jquery-ui.css" %}">
+<script src="{% static "common/JS/Lib/jquery-ui-1.11.4/external/jquery/jquery.js" %}"></script>
+<script src="{% static "common/JS/Lib/jquery-ui-1.11.4/jquery-ui.js" %}"></script>
+<script>
+$(function() {
+  $( "#datepicker_begin" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  $( "#datepicker_finish" ).datepicker({ dateFormat: 'yy-mm-dd' });
+});
+</script>
+
+</head>
+
+<body>
+
+Let's plan it!
+
+<form method="post" action="">
+{% csrf_token %}
+
+<DL>
+<DT>Project</DT>
+<DD>{{ WorkChunk_Plan_Form.proj }}</DD>
+<DT>Work chunk class</DT>
+<DD>{{ WorkChunk_Plan_Form.chunk_class }}</DD>
+<DT>Work chunk type</DT>
+<DD>{{ WorkChunk_Plan_Form.chunk_type }}</DD>
+<DT>Begin date & time</DT>
+<DD><input type="text" id="datepicker_begin" name="begin_date">
+&nbsp;
+<select id="id_begin_time_hh" name="begin_time_hh">
+<option value="0">&nbsp; 0</option>
+<option value="1">&nbsp; 1</option>
+<option value="2">&nbsp; 2</option>
+<option value="3">&nbsp; 3</option>
+<option value="4">&nbsp; 4</option>
+<option value="5">&nbsp; 5</option>
+<option value="6">&nbsp; 6</option>
+<option value="7">&nbsp; 7</option>
+<option value="8">&nbsp; 8</option>
+<option value="9" selected="selected">&nbsp; 9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+</select>
+:
+<select id="id_begin_time_mm" name="begin_time_mm">
+<option value="00" selected="selected">00</option>
+<option value="15">15</option>
+<option value="30">30</option>
+<option value="45">45</option>
+</select>
+</DD>
+<DT>Finish date & time</DT>
+<DD><input type="text" id="datepicker_finish" name="finish_date">
+&nbsp;
+<select id="id_finish_time_hh" name="finish_time_hh">
+<option value="0">&nbsp; 0</option>
+<option value="1">&nbsp; 1</option>
+<option value="2">&nbsp; 2</option>
+<option value="3">&nbsp; 3</option>
+<option value="4">&nbsp; 4</option>
+<option value="5">&nbsp; 5</option>
+<option value="6">&nbsp; 6</option>
+<option value="7">&nbsp; 7</option>
+<option value="8">&nbsp; 8</option>
+<option value="9">&nbsp; 9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17" selected="selected">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+</select>
+:
+<select id="id_finish_time_mm" name="finish_time_mm">
+<option value="00" selected="selected">00</option>
+<option value="15">15</option>
+<option value="30">30</option>
+<option value="45">45</option>
+</select>
+</DD>
+
+<DT>Note</DT>
+<DD>{{ WorkChunk_Plan_Form.plan_note }}</DD>
+</DL>
+
+<p><input type="submit" value="Submit"></p>
+</form>
+
+</body>
+</html>

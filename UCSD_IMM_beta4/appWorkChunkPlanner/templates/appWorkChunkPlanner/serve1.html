@@ -1,0 +1,36 @@
+{% load staticfiles %}
+{% load tz %}
+{% get_current_timezone as TIME_ZONE %}
+{% localtime on %}
+
+<html>
+<head>
+<title>Served Work Chunk</title>
+</head>
+
+<body>
+
+<H1>How Work Chunk Served</H1>
+
+User: {{ user.get_username }} &nbsp; Time: {% now "F j, Y H:i" %} ({{ TIME_ZONE }})
+
+<form method="post" action="">
+{% csrf_token %}
+
+<DL>
+<DT>Plan</DT>
+<DD>{{ WorkChunk_Served_Form.worked_plan }}{{ WorkChunk_Served_Form.worked_plan.errors }}</DD>
+<DT>Score</DT>
+<DD>{{ WorkChunk_Served_Form.score }}</DD>
+<DT>Served note</DT>
+<DD>{{ WorkChunk_Served_Form.served_note }}{{ WorkChunk_Served_Form.served_note.errors }}</DD>
+</DL>
+
+<p><input type="submit" value="Submit"></p>
+
+</form>
+
+</body>
+</html>
+
+{% endlocaltime %}

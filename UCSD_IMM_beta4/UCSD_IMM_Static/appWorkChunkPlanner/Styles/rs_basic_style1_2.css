@@ -1,0 +1,140 @@
+div#whole_user_area {
+
+	background-color: #EFEFEF;
+	overflow: auto;
+
+
+}
+
+div#whole_user_area H1 {
+
+	font-size: 32px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area H2 {
+
+	font-size: 24px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area p {
+
+	font-size: 18px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area div.style1 {
+
+	font-size: 18px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area DL {
+
+	font-size: 18px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#user_header {
+
+	margin: 10px 10px 10px;
+	background-color: #DEDEDE;
+
+}
+
+div.user_main {
+
+	margin: 5px 10px 10px;
+	background-color: #DEDEDE;
+
+}
+
+div.user_main span.incomplete {
+
+	color: brown;
+
+}
+
+div.user_main span.canceled {
+
+	color: red;
+}
+
+div.user_main span.completed {
+
+	color: green;
+
+}
+
+div.user_main span.not_started_yet {
+
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: orange;
+
+}
+
+div.user_main span.early_start {
+
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #66FFCC;
+
+}
+
+div.user_main span.late_start {
+
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #CC9933;
+
+}
+
+div.user_main span.early_finish {
+
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #66FFCC;
+
+}
+
+div.user_main span.late_finish {
+
+    padding-left: 5px;
+	padding-right: 5px;
+	background-color: #CC9933;
+
+}
+
+div.user_main span.took_shorter {
+
+    padding-left: 5px;
+	padding-right: 5px;
+	background-color: #66FFCC;
+
+}
+
+div.user_main span.took_longer {
+
+    padding-left: 5px;
+	padding-right: 5px;
+	background-color: #CC9933;
+
+}
+

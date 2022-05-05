@@ -1,0 +1,67 @@
+div#whole_user_area {
+
+	background-color: #EFEFEF;
+	overflow: auto;
+
+
+}
+
+div#whole_user_area H1 {
+
+	font-size: 32px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area H2 {
+
+	font-size: 24px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area p {
+
+	font-size: 18px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area div.style1 {
+
+	font-size: 18px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area DL {
+
+	font-size: 18px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#user_header {
+
+	margin: 10px 10px 10px;
+	background-color: #DEDEDE;
+
+}
+
+div#user_main {
+
+	margin: 5px 10px 10px;
+	background-color: #DEDEDE;
+
+}
+

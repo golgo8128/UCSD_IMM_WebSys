@@ -1,0 +1,79 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HERMIT copy map</title>
+<link href="{% static "appNichoAnu/CSS/map_Anurag1_2.css" %}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header1">
+   <div id="header1_sub1">
+      <div id="header1_sub1_anu">
+         <img src="{% static "appNichoAnu/Images/Anurag2016_3mini.jpg" %}" width=96px height=84px/>
+      </div>
+      <div id="header1_sub1_title1">
+         <span class="red">AN</span>
+         <span class="red">U</span>ltimate <span class="red">R</span>ough
+         <span class="red">AG</span>gregation of Metabolic Map
+      </div>
+      <div id="header1_sub1_title2">
+         Highly Energetic Republic Managing Information Technology (HERMIT)
+      </div>
+      <div class="float_clear"></div>
+   </div>
+</div>
+<div id="maindish">
+
+<!-- {{ message|safe }} -->
+
+<H2>Members</H2>   
+    
+<H3>Anurag</H3>
+
+<p>
+<img src="{% static "appNichoAnu/Images/Anurag2016_4mini.jpg" %}"/>
+</p>
+
+<p>The founder of HERMIT.
+For more information, click <a href="{% static "appNichoAnu/Founder/index.html" %}">here</a>.
+</p>
+
+<H3>Golgo</H3>
+   
+<p>
+<img src="{% static "appNichoAnu/Images/golgo8128_by_son22.png" %}"/>
+</p>
+   
+<p>
+Asked to take care of Anurag.
+</p>
+
+<p>
+<img src="{% static "appNichoAnu/Images/SCPlaza_microsoft_Anu2_mini2.jpg" %}"/>
+</p>
+
+<p>
+<img src="{% static "appNichoAnu/Images/LaJollaUTC_appleshop_Anu6_mini.jpg" %}"/>
+</p>
+    
+<hr>    
+
+ <div id="below_hr">
+  <p>
+  <span class="link1"><a href="{% url 'appNichoAnu:index' %}">Top page</a></span>  
+  </p>
+ </div>
+
+</div>
+
+<div id="footer1">
+HERMIT 2016, greatly inspired by
+<a href="http://www.sigmaaldrich.com/life-science/metabolomics/learning-center/metabolic-pathways.html">
+Nicholson's Metabolic Pathway Chart</a>.
+</div>
+
+</body>
+
+</html>

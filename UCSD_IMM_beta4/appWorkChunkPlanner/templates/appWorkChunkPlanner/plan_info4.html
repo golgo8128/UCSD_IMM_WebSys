@@ -1,0 +1,100 @@
+{% load staticfiles %}
+
+{% load tz %}
+{% get_current_timezone as TIME_ZONE %}
+{% localtime on %}
+
+<html>
+<head>
+<link href="{% static "appWorkChunkPlanner/Styles/plan_info1.css" %}" rel="stylesheet" type="text/css">
+<title>Plan information</title>
+</head>
+
+<body>
+
+<H1>Planned Work Chunk Information</H1>
+
+<p>User: {{ user.get_username }} &nbsp; Time: {% now "F j, Y H:i" %} ({{ TIME_ZONE }})</p>
+
+<H2>Plan: {{ wc_plan.plan_title }}</H2>
+
+<DL>
+<DT>Plan ID</DT>
+<DD>{{ wc_plan.id }}</DD>
+<DT>Chunk class / type</DT>
+<DD>{{ wc_plan.chunk_class }} / {{ wc_plan.chunk_type }}</DD>
+<DT>Project</DT>
+<DD>{{ wc_plan.project }}</DD>
+<DT>Planned time frame</DT>
+<DD>{{ wc_plan.begin_time }} - {{ wc_plan.finish_time }}</DD>
+<DT>Plan status</DT>
+<DD>{{ wc_plan.plan_status }}</DD>   
+<DT>Plan note</DT>
+<DD>{{ wc_plan.plan_note }}</DD>   
+ </DL>
+
+{% if wc_recs %}
+
+   <H2>Records for Actual Works</H2>
+   {% for rec in wc_recs %}
+
+      <H3>Worked period #{{ forloop.counter }}: {{ rec.start_time }} - {{ rec.end_time }}</H3>
+      <DL>
+      <DT>Weight per time</DT>
+      <DD>{{ rec.weight_per_time }}</DD>
+      <DT>Note</DT>
+      <DD>{{ rec.rec_note }}</DD>
+      </DL>
+   {% endfor %}
+   
+{% endif %}
+
+{% if sv_evls %}
+   <H2>Service Evaluation for Planned Works</H2>
+   {% for evl in sv_evls %}
+
+      <H3>Served information #{{ forloop.counter }}</H3>
+      <DL>
+      <DT>Score</DT>
+      <DD>{{ evl.score }}</DD>
+      <DT>Note</DT>
+      <DD>{{ evl.served_note }}</DD>
+      </DL>
+
+   {% endfor %}
+
+{% endif %}
+
+{% if wc_plan.plan_links_from_this or wc_plan.plan_links_to_this %}
+   <H2>Links between plans</H2>
+   <UL>
+   {% if wc_plan.plan_links_to_this %}
+      {% for lk in wc_plan.plan_links_to_this %}
+         <LI>
+            <a href="{% url 'appWorkChunkPlanner:plan_info' lk.plan_src.id %}">
+               {{ lk.plan_src }}
+            </a>
+            &#8213; <span class="recbox">{{ lk.link_type }} ({{ lk.link_weight }})</span> &#8594; {{ lk.plan_tgt }}
+         </LI>
+      {% endfor %}
+   {% endif %}
+   {% if wc_plan.plan_links_from_this %}
+      {% for lk in wc_plan.plan_links_from_this %}
+         <LI>{{ lk.plan_src }} &#8213; <span class="recbox">{{ lk.link_type }} ({{ lk.link_weight }})</span> &#8594;
+             <a href="{% url 'appWorkChunkPlanner:plan_info' lk.plan_tgt.id %}">
+                {{ lk.plan_tgt }}
+             </a>
+         </LI>
+      {% endfor %}
+   {% endif %}
+   </UL>
+{% endif %}
+
+<br/>
+
+
+</body>
+</html>
+
+{% endlocaltime %}
+

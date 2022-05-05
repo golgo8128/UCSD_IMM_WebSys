@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Work Chunk Planner</title>
+</head>
+<body>
+<H1>Welcome to Work Chunk Planner</H1>
+
+<H2>Submit a new plan</H2>
+
+Click <a href="{% url 'appWorkChunkPlanner:plan' %}">HERE</a>.
+
+<H2>Input work record for planned chunk</H2>
+
+<UL>
+{% for planobj in planobjs %}
+<LI><a href="{% url 'appWorkChunkPlanner:record' planobj.id %}">[{{ planobj.begin_time }} - {{ planobj.finish_time }}] {{ planobj.plan_title }}</a></LI>
+{% endfor %}
+</UL>
+
+<H2>Input service evaluation for worked chunk record</H2>
+
+<UL>
+{% for wchkobj in wchkobjs %}
+<LI><a href="{% url 'appWorkChunkPlanner:serve' wchkobj.id %}">[{{ wchkobj.start_time }} - {{ wchkobj.end_time }}] {{ wchkobj.corresp_plan.plan_title }}</a></LI>
+{% endfor %}
+</UL>
+
+</body>
+</html>

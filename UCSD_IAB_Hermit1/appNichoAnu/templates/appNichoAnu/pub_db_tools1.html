@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HERMIT copy map</title>
+<link href="{% static "appNichoAnu/CSS/map_Anurag1_2.css" %}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="header1">
+   <div id="header1_sub1">
+      <div id="header1_sub1_anu">
+         <img src="{% static "appNichoAnu/Images/Anurag2016_3mini.jpg" %}" width=96px height=84px/>
+      </div>
+      <div id="header1_sub1_title1">
+         <span class="red">AN</span>
+         <span class="red">U</span>ltimate <span class="red">R</span>ough
+         <span class="red">AG</span>gregation of Metabolic Map
+      </div>
+      <div id="header1_sub1_title2">
+         Highly Energetic Republic Managing Information Technology (HERMIT)
+      </div>
+      <div class="float_clear"></div>
+   </div>
+</div>
+<div id="maindish">
+
+<!-- {{ message|safe }} -->
+
+<H2>Publicly available databases</H2>   
+    
+<DL>
+<DT><a href="http://www.genome.jp/kegg/">KEGG</a></DT>
+<DD>Kyoto Encyclopedia of Genes and Genomes</DD>
+<DT><a href="http://www.reactome.org/">REACTOME</a></DT>
+<DD>A curated pathway database</DD>
+<DT><a href="http://www.ndexbio.org/">NDEx</a></DT>
+<DD>The Network Data Exchange</DD>
+<DT><a href="http://www.hmdb.ca/">HMDB</a></DT>
+<DD>The Human Metabolome Database</DD>
+<DT><a href="http://www.g-language.org/PathwayProjector/">Pathway Projector</a></DT>
+<DD>Google-like technology to visualize metabolic pathway</DD>
+<DT><a href="http://megu.iab.keio.ac.jp/">MEGU</a></DT>
+<DD>Metabolic pathway drawn by SVG</DD>
+</DL>
+
+<H2>Publicly available tools</H2>
+<DL>
+<DT><a href="http://www.metaboanalyst.ca/">MetaboAnalyst</a></DT>
+<DD>A comprehensive tool suite for metabolomic data analysis</DD>
+<DT><a href="http://metscape.ncibi.org/">Metscape</a></DT>
+<DD>The MetScape 3 App for <a href="http://www.cytoscape.org">Cytoscape</a></DD>
+</DL>
+   
+    
+<hr>    
+
+ <div id="below_hr">
+  <p>
+  <span class="link1"><a href="{% url 'appNichoAnu:index' %}">Top page</a></span>  
+  </p>
+ </div>
+                 
+</div>
+
+<div id="footer1">
+HERMIT 2016, greatly inspired by
+<a href="http://www.sigmaaldrich.com/life-science/metabolomics/learning-center/metabolic-pathways.html">
+Nicholson's Metabolic Pathway Chart</a>.
+</div>
+
+</body>
+
+</html>

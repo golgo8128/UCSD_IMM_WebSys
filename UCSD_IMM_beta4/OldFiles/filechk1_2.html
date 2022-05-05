@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>Waiting for result file generation</title>
+
+<script src="{% static "common/JS/Lib/jquery-1.11.3.min.js" %}"></script>
+<script type="text/javascript" src="{% static "appBatchAdjust/JS/WaitDocks1_6_onevent.js" %}"></script>
+<script>
+function filegenchk(){
+
+	$.getJSON("{% url 'DownloadFileGenChk:filecheck_server' chkfilename %}",
+			  function( iobj ) {
+		
+		document.getElementById("timer1").innerHTML = new Date();
+		
+		if(iobj.FileFound == "False"){
+			setTimeout("filegenchk()", 3000);
+		} else {
+			clearTimeout(waitdocks_loop_timeout_id)
+			document.getElementById("message1").innerHTML = "File {{ chkfilename }} ready";
+			window.location.replace("{% url 'DownloadFileGenChk:file_download' chkfilename %}");
+		}
+		
+	});	
+	
+}
+
+$(function() {
+	filegenchk();
+	waitdocks_loop();
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="timer1"></div>
+<div id="waitdockloc">-</div>
+<div id="message1"></div>
+
+</body>
+</html>

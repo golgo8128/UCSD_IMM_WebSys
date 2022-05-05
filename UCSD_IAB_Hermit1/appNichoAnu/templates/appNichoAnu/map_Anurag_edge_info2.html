@@ -1,0 +1,192 @@
+{% load staticfiles %}
+{% load tz %}
+{% get_current_timezone as TIME_ZONE %}
+{% localtime on %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HERMIT copy map</title>
+<link href="{% static "appNichoAnu/CSS/map_Anurag1_2.css" %}" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" language="javascript">
+function SwapEdgeAnu()
+{
+  <!-- id_node_src/tgt should be replaced (generalized?) -->
+	
+  var node_src_sel_val = document.getElementById('{{ edge_form.node_src.auto_id }}').value;
+  document.getElementById('{{ edge_form.node_src.auto_id }}').value = document.getElementById('{{ edge_form.node_tgt.auto_id }}').value;
+  document.getElementById('{{ edge_form.node_tgt.auto_id }}').value = node_src_sel_val;
+}
+
+function clicked_del_edge(ichkbx, ilabelid) {
+
+	  var labelvar = document.getElementById(ilabelid);
+    if (ichkbx.checked == true){
+    	labelvar.style.backgroundColor = "red";
+    	labelvar.style.fontSize = "x-large";
+		labelvar.style.padding = "7px";
+    } else {
+    	labelvar.style.backgroundColor =  "rgba(255, 255, 255, 0.0)";      
+    	labelvar.style.fontSize = "medium";
+		labelvar.style.padding = "1px";
+    }
+    
+}
+</script>
+
+</head>
+
+<body>
+<div id="header1">
+   <div id="header1_sub1">
+      <div id="header1_sub1_anu">
+         <img src="{% static "appNichoAnu/Images/hermit_illust629.png" %}" width=96px height=84px/>
+         <!-- This was take from http://illust.okinawa/k-sea/e629.html
+              Can be switched to Anurag2016_3mini.jpg -->
+      </div>
+      <div id="header1_sub1_title1">
+         <!--  
+         <span class="red">AN</span>
+         <span class="red">U</span>ltimate <span class="red">R</span>ough
+         <span class="red">AG</span>gregation of Metabolic Map
+         -->
+        An Ultimate Rough Aggregation of Metabolic Map
+      </div>
+      <div id="header1_sub1_title2">
+         Highly Energetic Republic Managing Information Technology (HERMIT)
+      </div>
+      <div class="float_clear"></div>
+   </div>
+</div>
+<div id="maindish">
+
+<img class="place_in_middle" src="{{ image_url }}"/>   
+
+<p style="color: red">
+Warning: Still experimental. Accuracy of the information shown here is limited. Looking for curators.
+</p>
+
+<H2>Edge information</H2>
+
+<form method="post" action="">
+{% csrf_token %}
+
+<DL>
+<DT>Edge ID </DT>
+<DD>{{ edge_form.edge_id }}</DD>
+<DT>Connection</DT>
+<DD>
+Source Node: {{ edge_form.node_src }}
+&nbsp;
+Destination Node: {{ edge_form.node_tgt }}
+
+&nbsp;
+<input id="swap_edge_dir" onclick="SwapEdgeAnu();" type="button" value="Swap" />
+
+</DD>
+<DD>
+Reaction Type: {{ edge_form.classification }}
+&nbsp;
+Reaction Category: {{ edge_form.categorization_I }}
+</DD>
+<DD>
+Directed: {{ edge_form.is_directed }}
+</DD>
+<DD>
+Jump to node information:
+<a href="{% url 'appNichoAnu:node_vis_id_info' edge.node_src.node_vis_id %}">{{ edge.node_src }}</a> ({{ edge.node_src.annotation }})
+-
+<a href="{% url 'appNichoAnu:node_vis_id_info' edge.node_tgt.node_vis_id %}">{{ edge.node_tgt }}</a> ({{ edge.node_tgt.annotation }})
+</DD>
+<DT>Annotation</DT>
+<DD>{{ edge_form.annotation }}</DD>
+<DT>EC Numbers</DT>
+<DD>{{ edge_form.ecnums }} (Multiple EC numbers should be separated by comma(s))</DD>
+<DD>External database:
+{% for ecnum_str in edge.get_ecnums_strs %}
+<a href="http://www.brenda-enzymes.org/enzyme.php?ecno={{ ecnum_str }}&Suchword=&organism%5B%5D=Homo+sapiens&organism%5B%5D=Mus+musculus">
+{{ ecnum_str }}&nbsp;
+</a>
+<!-- 
+http://www.brenda-enzymes.org/enzyme.php?ecno=4.2.1.3&Suchword=&organism%5B%5D=Homo+sapiens&organism%5B%5D=Mus+musculus
+http://www.brenda-enzymes.org/enzyme.php?ecno=4.2.1.3&organism_list=Homo%20sapiens^Mus%20musculus&Suchword=&showtm=0&UniProtAcc=
+-->
+{% endfor %}
+</DD>
+<DT>Coupled Reactions</DT>
+<DD>{{ edge_form.coupled_reaction_note }}</DD>
+<DT>Source Public Database | Entry ID</DT>
+<DD>{{ edge_form.pubdb_name }} | {{ edge_form.pubdb_id }}</DD>
+<DT>Reliability</DT>
+<DD>{{ edge.reliability }}</DD>
+<DT>Note</DT>
+<DD>{{ edge_form.note }}</DD>
+</DL>
+
+{% if not request.user.is_anonymous and request.user.is_authenticated %}
+<B>Edge relay positions</B>
+<DL>
+<DT>Source node position</DT>
+<DD>x: {{ edge.node_src.pos_x_on_map }} &nbsp; y: {{ edge.node_src.pos_y_on_map }}</DD>
+<DT>Relay position 1</DT>
+<DD>x:{{ edge_form.relay_pos_x1_on_map }} y:{{ edge_form.relay_pos_y1_on_map }}</DD>
+<DT>Relay position 2</DT>
+<DD>x:{{ edge_form.relay_pos_x2_on_map }} y:{{ edge_form.relay_pos_y2_on_map }}</DD>
+<DT>Relay position 3</DT>
+<DD>x:{{ edge_form.relay_pos_x3_on_map }} y:{{ edge_form.relay_pos_y3_on_map }}</DD>
+<DT>Target node position</DT>
+<DD>x: {{ edge.node_tgt.pos_x_on_map }} &nbsp; y: {{ edge.node_tgt.pos_y_on_map }}</DD>
+</DL>
+
+{% endif %}
+
+{% if not request.user.is_anonymous and request.user.is_authenticated %}
+
+<!-- edge_form.del_edge -->
+<input id="id_del_edge" name="del_edge" type="checkbox"
+  onclick="clicked_del_edge(this, 'label_del_edge');" />
+<label for="id_del_edge" id="label_del_edge">Delete this edge</label>
+
+{% endif %}
+
+<DL>
+<DT>Last edit</DT>
+<DD>on {{ edge.timestamp }}</DD>
+<DD>by {{ edge.user }}</DD>
+</DL>
+
+{% if not request.user.is_anonymous and request.user.is_authenticated %}
+<p><input type="submit" value="Submit"></p>
+{% endif %}
+
+</form>
+
+{% if not request.user.is_anonymous and request.user.is_authenticated %}      
+<div id="add_compo">
+<a href="{% url 'appNichoAnu:add_node' %}">Add node</a>
+<a href="{% url 'appNichoAnu:add_edge' %}">Add edge</a>
+</div>
+{% endif %}
+
+<hr>
+
+
+ <div id="below_hr">
+  <span class="link1"><a href="{% url 'appNichoAnu:index' %}">Go back to top page</a></span>
+ </div>
+
+                                       
+</div>
+
+<div id="footer1">
+HERMIT 2016, greatly inspired by
+<a href="http://www.sigmaaldrich.com/life-science/metabolomics/learning-center/metabolic-pathways.html">
+Nicholson's Metabolic Pathway Chart</a>.
+</div>
+</body>
+
+</html>
+
+{% endlocaltime %}
+

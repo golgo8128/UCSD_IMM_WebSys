@@ -1,0 +1,81 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>Waiting for result file generation</title>
+
+<script src="{% static "common/JS/Lib/jquery-1.11.3.min.js" %}"></script>
+<script type="text/javascript" src="{% static "common/JS/Craft/WaitDocks1_9.js" %}"></script>
+<script type="text/javascript">
+function filegenchk(){
+	
+	// Doing the check here will cause generation of defunct process.
+	// More specifically, a process in Processes.MultiProcsTermAtExit_simple1_2.get_all_processes() disappear,
+	// presumably because the second iterative check is done with different Python process.
+	// Not sure what happens if XMLHttpRequest is used directly from Javascript rather than via jQuery's $.getJSON.
+	// Tested on Javascript 1.7 with jquery-1.11.3.min.js
+	
+}
+
+function dock_stop(){
+	
+	if (filecheck_status == "normal termination"){
+		document.getElementById("message1").innerHTML = "File {{ chk_base_filename }} ready";
+		window.location.replace("{% url 'DownloadFileGenChk:file_download_pre' uniqstamp_core %}");
+	} else if (filecheck_status == "terminated by error"){
+		window.location.replace("{% url 'DownloadFileGenChk:found_error' uniqstamp_core %}");		
+	}
+
+}
+
+function timeout_action(){
+	
+	window.location.replace("{% url 'DownloadFileGenChk:timeout' %}");
+	
+}
+
+function pcheck(){
+
+	// document.getElementById("console1").innerHTML = wdock1.counter + "/" + this.countmax + " " + this.itimeintrv;
+	
+	$.getJSON("{% url 'DownloadFileGenChk:filecheck_server' uniqstamp_core %}",
+			  function( iobj ) {
+		
+		document.getElementById("timer1").innerHTML = new Date();
+		
+		if(iobj.status == "normal termination" || iobj.status == "terminated by error"){
+			filecheck_status = iobj.status; // filecheck_status intended as global variable
+			wdock1.invoke_stop_sequence();
+		}
+		
+	});	
+		
+	if (!wdock1.get_stop()){
+		wdock1.update();
+		setTimeout("pcheck()", {{ itimeintrv_millisec }});	
+	};
+	
+}
+
+$(function() {
+	wdock1 = new WaitDocks(filegenchk,
+                           dock_stop,
+                           timeout_action,
+                           "waitdockloc1",
+                           {{ proc_millisec }}, // proc_millisec
+                           {{ itimeintrv_millisec }}, // itimeintrv
+                           {{ timeout_millisec }}); // cmax_millisec
+	pcheck();
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="timer1"></div>
+<div id="console1"></div>
+<div id="waitdockloc1">-</div>
+<div id="message1"></div>
+
+</body>
+</html>

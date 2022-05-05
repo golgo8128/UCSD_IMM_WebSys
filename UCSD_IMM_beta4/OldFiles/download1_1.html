@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>Generated file download</title>
+
+<script type="text/javascript">
+function initiate_file_download(){
+	window.location.replace("{% url 'DownloadFileGenChk:file_download' uniqstamp_core %}");
+}
+</script>
+</head>
+
+<body onload="initiate_file_download()">
+
+<H1>Generated file download</H1>
+
+File name: {{ chk_base_filename }}
+
+<br/><br/>
+
+<a href="{% url 'UCSD_IMM_ToC:entry' %}">&#8658;</a>Return to the table of contents
+
+</body>
+</html>

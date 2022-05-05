@@ -1,0 +1,66 @@
+{% load staticfiles %}
+
+<html>
+<head>
+<title>Work Chunk Record Input</title>
+
+<link rel="stylesheet" href="{% static "common/JS/Lib/jquery-ui-1.11.4/jquery-ui.css" %}">
+<script src="{% static "common/JS/Lib/jquery-ui-1.11.4/external/jquery/jquery.js" %}"></script>
+<script src="{% static "common/JS/Lib/jquery-ui-1.11.4/jquery-ui.js" %}"></script>
+<script>
+$(function() {
+  $( "#datepicker_start" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  $( "#datepicker_end" ).datepicker({ dateFormat: 'yy-mm-dd' });
+});
+</script>
+
+</head>
+
+<body>
+
+<H1>Work Chunk Record Input</H1>
+
+<form method="post" action="">
+{% csrf_token %}
+
+<DL>
+<DT>Corresponding plan</DT>
+<DD>{{ WorkChunk_Record_Form.corresp_plan }}{{  WorkChunk_Record_Form.corresp_plan.errors }}</DD>
+<DT>Start date & time</DT>
+<DD><input type="text" id="datepicker_start" name="start_date" value="{{ start_date_str|safe }}">
+&nbsp;
+<select id="id_start_time_hh" name="start_time_hh">
+{{ hh_selector_start_str|safe }}
+</select>
+:
+<select id="id_start_time_mm" name="start_time_mm">
+{{ mm_selector_start_str|safe }}
+</select>
+{{  WorkChunk_Record_Form.start_time.errors }}
+</DD>
+<DT>End date & time</DT>
+<DD><input type="text" id="datepicker_end" name="end_date" value="{{ end_date_str|safe }}">
+&nbsp;
+<select id="id_end_time_hh" name="end_time_hh">
+{{ hh_selector_end_str|safe }}
+</select>
+:
+<select id="id_end_time_mm" name="end_time_mm">
+{{ mm_selector_end_str|safe }}
+</select>
+{{  WorkChunk_Record_Form.end_time.errors }}
+{{ time_orient_error_str|safe }}
+</DD>
+<DT>Weight per time</DT>
+<DD>{{ WorkChunk_Record_Form.weight_per_time }}</DD>
+<DT>Note</DT>
+<DD>{{ WorkChunk_Record_Form.rec_note }}</DD>
+</DL>
+
+<input type="checkbox" name="workchunk_complete" value="complete">Declare work chunk accomplishment
+
+<p><input type="submit" value="Submit"></p>
+</form>
+
+</body>
+</html>

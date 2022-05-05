@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>UCSD IMM System File Upload</title>       
+
+<script type="text/javascript">
+function {{ jsfuncname_switch }}(){
+<!-- replace by rendering ... -->
+	if (document.getElementById("{{ iproj_choicefield_id }}").value == "{{ new_proj_label }}"){
+		document.getElementById("{{ inewproj_textfield_id }}").disabled = false;
+	} else {
+		document.getElementById("{{ inewproj_textfield_id }}").disabled = true;
+	}
+
+}
+</script>
+
+</head>
+
+<body onLoad="{{ jsfuncname_switch }}()">
+
+<H1>IMM System: File Upload</H1>
+<img src="{% static "common/Images/Logo/KITT_Scanner16.gif" %}">
+
+<!--
+Upload form. Note enctype attribute!
+action = "" ... action on self, not on other cgi script.
+-->
+<form id = "fileupload1" action= "" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{ fileupload_form.as_p }}
+<p><input type="submit" value="Upload" /></p>
+</form>
+         
+</body>
+
+</html> 

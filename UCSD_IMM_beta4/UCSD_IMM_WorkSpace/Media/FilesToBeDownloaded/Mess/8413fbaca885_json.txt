@@ -1,0 +1,1 @@
+{"DjangoSafeHTMLText": "\n<html>\n<head>\n<title>File Generation OK</title>\n</head>\n\n<body>\n\n<H1>File Generation OK</H1>\n\nFile name: \n\n<br/><br/>\n\n<a href=\"/entry/\">&#8658;</a>Return to the table of contents\n\n</body>\n</html>\n"}

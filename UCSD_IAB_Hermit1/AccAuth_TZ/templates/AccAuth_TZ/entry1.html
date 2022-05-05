@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>Entry</title>
+</head>
+
+<body>
+<h1>User Account Authentication</h1>
+
+<p>Current user: {{ current_user }} ({{ server_user }})</p>
+
+{% if auth_success == False %}
+Authentication failed.
+{% elif acc_activ == False %}
+This account is inactive.
+{% endif %}
+
+<form action="" method="post">
+{% csrf_token %}
+{{ accauth_info_input }}
+<p><input type="submit" value="Authenticate"></p>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>File Upload</title>       
+
+<script type="text/javascript">
+function switch_enable_writing_new_name(){
+<!-- replace by rendering ... -->
+	if (document.forms.{{ fileupload_form.auto_id }}.\
+			{{ fileupload_form.fields.iprojname.widget.attrs.id }}.value
+			== {{ new_proj_label }}){
+		document.forms.{{ fileupload_form.auto_id }}.\
+			{{ fileupload_form.fields.iprojname_new.widget.attrs.id }}.disabled = false;
+	} else {
+		document.forms.{{ fileupload_form.auto_id }}.\
+			{{ fileupload_form.fields.iprojname_new.widget.attrs.id }}.disabled = true;
+	}
+
+}
+</script>
+
+</head>
+
+<body>
+
+<!--
+Upload form. Note enctype attribute!
+action = "" ... action on self, not on other cgi script.
+-->
+
+<form id = "fileupload1" action= "" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{ fileupload_form }}
+<p><input type="submit" value="Upload" /></p>
+</form>
+         
+</body>
+
+</html> 

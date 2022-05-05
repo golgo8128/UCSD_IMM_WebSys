@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Work Chunk Planner</title>
+</head>
+<body>
+<H1>Welcome to Work Chunk Planner</H1>
+
+<H2>Submit a new plan</H2>
+
+Click <a href="{% url 'appWorkChunkPlanner:plan' %}">HERE</a>.
+
+<H2>Planned work chunks</H2>
+
+<DL>
+{% for planobj in planobjs %}
+   <DT>[{{ planobj.begin_time|date:"Y M j (D) H:i"  }} - {{ planobj.finish_time|date:"H:i" }}] {{ planobj.plan_title }}</DT>
+   <DD>Status:
+   {% if planobj.bool_completed %}
+      Completed. 
+   {% else %}
+      <B>Incomplete</B>
+   {% endif %}
+   {% if planobj.bool_not_started_yet %}
+      <B>[Not started yet]</B>
+   {% endif %}
+   {% if planobj.bool_started_late %}
+      <B>[Late start]</B>
+   {% endif %}
+   {% if planobj.bool_started_early %}
+      <B>[Early start]</B>
+   {% endif %}
+   {% if planobj.bool_finished_late %}
+      <B>[Late finish]</B>
+   {% endif %}
+   {% if planobj.bool_took_longer %}
+      <B>[Took longer]</B>
+   {% endif %}
+   {% if planobj.bool_took_shorter %}
+      <B>[Took shorter]</B>
+   {% endif %}
+   </DD>
+   <DD>
+   <a href="{% url 'appWorkChunkPlanner:plan_info' planobj.id %}">View plan</a> |
+   {% if planobj.worked_records %}
+      <a href="{% url 'appWorkChunkPlanner:record' planobj.id %}">Input record</a> ({{ planobj.worked_records|length }}) 
+      {% if planobj.served_evals %}
+         | <a href="{% url 'appWorkChunkPlanner:serve' planobj.id %}">Input service evaluation</a> ({{ planobj.served_evals|length }}) 
+      {% else %}
+         | <a href="{% url 'appWorkChunkPlanner:serve' planobj.id %}">Input service evaluation</a>  
+      {% endif %}
+   {% else %}
+      <a href="{% url 'appWorkChunkPlanner:record' planobj.id %}">Input record</a> 
+   {% endif %}
+   </DD>
+{% endfor %}
+</DL>
+
+</body>
+</html>
+

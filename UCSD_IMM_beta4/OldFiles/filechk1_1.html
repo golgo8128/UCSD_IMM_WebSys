@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>Waiting for result file generation</title>
+
+<script src="{% static "common/JS/Lib/jquery-1.11.3.min.js" %}"></script>
+<script>
+$(function() {
+	
+	$.getJSON("{% url 'DownloadFileGenChk:filecheck_server' chkfilename %}",
+			  function( iobj ) {
+				  
+		document.write(iobj.FileFound);
+
+	});	
+	
+});
+</script>
+
+
+</head>
+
+<body>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>Process Error</title>
+</head>
+
+<body>
+
+<H1>Error occurred</H1>
+
+<font color="#ff0000">
+{% for errstr in errstrlist %}
+{{ errstr }}<br/>
+{% endfor %}
+</font>
+
+<br/>
+
+Please contact system administrator (golgo8128@yahoo.co.jp) for support.
+
+</body>
+</html>

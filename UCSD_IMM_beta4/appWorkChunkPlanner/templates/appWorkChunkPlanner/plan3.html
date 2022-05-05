@@ -1,0 +1,83 @@
+{% load staticfiles %}
+
+{% load tz %}
+{% get_current_timezone as TIME_ZONE %}
+{% localtime on %}
+
+<html>
+<head>
+<title>Work Chunk Plan Input</title>
+
+<link rel="stylesheet" href="{% static "common/JS/Lib/jquery-ui-1.11.4/jquery-ui.css" %}">
+<script src="{% static "common/JS/Lib/jquery-ui-1.11.4/external/jquery/jquery.js" %}"></script>
+<script src="{% static "common/JS/Lib/jquery-ui-1.11.4/jquery-ui.js" %}"></script>
+<script>
+$(function() {
+  $( "#datepicker_begin" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  $( "#datepicker_finish" ).datepicker({ dateFormat: 'yy-mm-dd' });
+});
+</script>
+
+</head>
+
+<body>
+
+<H1>Work Chunk Plan Input</H1>
+
+User: {{ user.get_username }} &nbsp; &nbsp; Time: {% now "F j, Y H:i" %} ({{ TIME_ZONE }})
+
+<form method="post" action="">
+{% csrf_token %}
+
+<DL>
+<DT>Plan title</DT>
+<DD>{{ WorkChunk_Plan_Form.plan_title }}{{  WorkChunk_Plan_Form.plan_title.errors }}</DD>
+<DT>Project</DT>
+<DD>{{ WorkChunk_Plan_Form.project }}{{  WorkChunk_Plan_Form.project.errors }}</DD>
+<DT>Work chunk class</DT>
+<DD>{{ WorkChunk_Plan_Form.chunk_class }}{{  WorkChunk_Plan_Form.chunk_class.errors }}</DD>
+<DT>Work chunk type</DT>
+<DD>{{ WorkChunk_Plan_Form.chunk_type }}{{  WorkChunk_Plan_Form.chunk_type.errors }}</DD>
+<DT>Begin date & time</DT>
+<DD><input type="text" id="datepicker_begin" name="begin_date" value="{{ begin_date_str|safe }}">
+&nbsp;
+<select id="id_begin_time_hh" name="begin_time_hh">
+{{ hh_selector_begin_str|safe }}
+</select>
+:
+<select id="id_begin_time_mm" name="begin_time_mm">
+{{ mm_selector_begin_str|safe }}
+</select>
+{{  WorkChunk_Plan_Form.begin_time.errors }}
+</DD>
+<DT>Finish date & time</DT>
+<DD><input type="text" id="datepicker_finish" name="finish_date" value="{{ finish_date_str|safe }}">
+&nbsp;
+<select id="id_finish_time_hh" name="finish_time_hh">
+{{ hh_selector_finish_str|safe }}
+</select>
+:
+<select id="id_finish_time_mm" name="finish_time_mm">
+{{ mm_selector_finish_str|safe }}
+</select>
+{{  WorkChunk_Plan_Form.finish_time.errors }}
+{{ time_orient_error_str|safe }}
+</DD>
+
+<DT>Links to existing projects</DT>
+<DD>
+{{ WorkChunk_Plan_Form.link_planids_str }}
+</DD>
+
+<DT>Note</DT>
+<DD>{{ WorkChunk_Plan_Form.plan_note }}</DD>
+</DL>
+
+<p><input type="submit" value="Submit"></p>
+</form>
+
+</body>
+</html>
+
+{% endlocaltime %}
+

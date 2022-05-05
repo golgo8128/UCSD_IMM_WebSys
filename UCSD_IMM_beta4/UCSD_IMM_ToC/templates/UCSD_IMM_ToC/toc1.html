@@ -1,0 +1,152 @@
+{% load staticfiles %}
+
+<html>
+<head>
+<title>IMM: Table of Contents</title>
+<style>
+
+body {
+
+	background-color:#FFEFEF;
+
+}
+
+div#toc_title_illust {
+
+    margin: 5px;
+	padding-top: 5px;
+	padding-left: 24px;
+	height:100px;
+	font-size: 36px;
+	color: #666633;
+	font-weight: bold;
+	background-color:#d8e8e5;
+	float: left;
+
+}
+
+div#toc_title {
+
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+	padding-top: 16px;
+	padding-left: 12px;
+	height:60px;
+	font-size: 36px;
+	color: #444422;
+	font-weight: bold;
+	background-color:#d8e8e5;
+	
+}
+
+div#toc_title_sub {
+
+    margin-left: 5px;
+ 	padding-top: 2px;
+	padding-left: 32px;
+	height:40px;
+	font-size: 16px;
+	font-weight: bold;
+	background-color:#d8e8e5;
+	float: left;
+
+}
+
+div#toc_title_ver {
+
+    margin-left: 5px;
+    margin-right: 5px;
+	padding-top: 2px;
+	padding-right: 16px;
+	height:40px;
+	color: #889977;
+	font-size: 16px;
+	font-weight: bold;
+	background-color:#d8e8e5;
+	text-align: right;
+	
+}
+
+div#toc_menu_title {
+
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    padding-top: 3px;
+   	height: 30px;
+	background-color:#FFCCDD;
+	font-size: 20px;
+	font-weight: bold;
+		
+}
+
+div#toc_menu {
+
+    margin-top: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 0px;
+	padding-top: 1px;
+	padding-bottom: 10px;
+	background-color:#FFCCDD;
+	
+}
+
+div#toc_menu ul {
+
+	margin: 0px;
+	padding-top: 0px;
+
+}
+
+div#logout {
+
+	margin-top: 5px;
+	padding: 10px;
+}
+
+</style>
+<!-- Use overflow: hidden; to eliminate gaps between div blocks
+Or add appropriate paddings.
+-->
+
+</head>
+
+<body>
+<div id="toc_title_illust">
+<img src="{% static "common/Images/Logo/PC1_2.gif" %}"/>
+</div>
+<div id="toc_title">
+&nbsp; UCSD IMM System
+</div>
+<div id="toc_title_sub">
+<font color="grey">You are logged in as</font> <font color="green">{{ username }}</font>.
+</div>
+
+<div id="toc_title_ver">
+Version beta 4.1.1
+</div>
+
+<div id="toc_menu_title">
+&nbsp; Menu
+</div>
+
+<div id="toc_menu">
+<ul>
+<li><a href="{% url 'appBatchAdjust:entry' %}">Batch Adjustment</a></li>
+<li><a href="{% url 'FileUpload:fileupload' %}">File Upload</a></li>
+<li><a href="{% url 'appStrEncrypt:index' %}">Character String Encryption / Decryption</a></li>
+<!-- <li><a href="{% url 'appWorkChunkPlanner:index' %}">Work Chunk Planner</a></li>  -->
+</ul>
+</div>
+
+<div id="logout">
+<a href="{% url 'AccAuth:getout' %}">Logout</a> | <a href="{% url 'admin:password_change' %}">Password change</a>
+</div>
+
+</body>
+
+
+</html>

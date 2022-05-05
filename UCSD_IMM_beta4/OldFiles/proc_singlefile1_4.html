@@ -1,0 +1,61 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>Batch Adjustment of Metabolome Data</title>
+</head>
+<body>
+<img src="{% static "common/Images/Logo/KITT_Scanner16.gif" %}" width="595pt" height="30pt"/>
+<H1>Batch Adjustment of Metabolome Data</H1>
+&spades; For single metabolome data table file
+<hr>
+
+<div style="background-color : #CCCCCC">
+<br>
+<form action   = "{% url 'appBatchAdjust:invoke' %}"
+      method   = "post">
+<!-- enctype = "multipart/form-data" may avoid browser to hang while in process -->
+{% csrf_token %}
+<p>Control sample name prefix:
+<input type="text" name="ctrlsampnameprefix" size = 10 value="MC">
+</p>
+<p>Small quantity to use instead of 0's and NaNs:
+<input type="text" name="smallvalforzerosnans" size = 10 value="0.00001">
+</p>
+<p>Comma in number representation:
+<input type="checkbox" name="commaasdpoint" value="commadec" checked>
+Regard comma "," as a decimal point<br>
+
+<p><U>Select metabolome data file</U>:
+{% for filobj in fupobjs %}
+<p>
+<input type="radio" name="selfilobj" value="{{ filobj.id }}"/>
+{{ filobj.ifilename }} - {{ filobj.iproj }} [ {{ filobj.itimestamp }} ]<br/> {{ filobj.idescription }}
+</p>
+{% endfor %}
+
+</p>
+<p><input type="submit" value="Submit"></p>
+</form>
+</div>
+
+<H2>Quick Instruction</H2>
+<UL>
+<LI>Prepare metabolome data table.</LI>
+<UL>
+<LI>The first column should contain batch names. The header of the column should be "Batch No".</LI>
+<LI>The second column should contain sample IDs. The header of the column should be "Sample ID".</LI>
+</UL>
+<br/>
+<img src="{% static "appBatchAdjust/Images/metabsinglefile_sample1.jpg" %}"/>
+<br/><br/>
+<LI>The spreadsheet should be saved as tab-delimited text file, <U>NOT as an Excel file</U>.
+Sample file: <a href="{% static "appBatchAdjust/Txt/metabsinglefile_sample1.txt" %}">here</a></LI>
+</UL>
+
+&nbsp; <img src="{% static "appBatchAdjust/Images/make_tsv_excel1_2_1.jpg" %}"/>
+
+<hr>
+Contact: golgo8128@yahoo.co.jp<br/>
+<!-- {{ DIR_UCSD_IMM_WORK }} -->
+</body>
+</html>

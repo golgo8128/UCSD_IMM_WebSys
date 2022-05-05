@@ -1,0 +1,52 @@
+<html>
+<head>
+<script type="text/javascript" src="WaitDocks1_5_onevent.js"></script>
+<title>Batch Adjustment of Metabolome Data</title>
+</head>
+<body>
+<B><U>rsIMM Web System</U></B><br>
+<img src="KITT_Scanner16.gif" width="595pt" height="30pt">
+<H1>Batch Adjustment of Metabolome Data</H1>
+&spades; For single metabolome data table file
+<hr>
+
+<div style="background-color : #CCCCCC">
+<br>
+<form enctype = "multipart/form-data"
+      action  = "/RUN/WebSys_UCSD_IMM/MetabDatProc/BatchAdjust/batchadjust_entry_SingleFile1_3.py"
+      method  = "post",
+      onsubmit="waitdocks_loop()">
+<p>Control sample name prefix:
+<input type="text" name="ctrlsampnameprefix" size = 10 value="MC">
+</p>
+<p>Small quantity to use instead of 0's and NaNs:
+<input type="text" name="smallvalforzerosnans" size = 10 value="0.00001">
+</p>
+<p>Comma in number representation:
+<input type="checkbox" name="commaasdpoint" value="commadec" checked>
+Regard comma "," as a decimal point<br>
+
+<p>Metabolome data files:
+   <input id = "selfile1"
+    type     = "file"
+    name     = "metabdatfile"
+    size     = "30">
+</p>
+<p><input type="submit" value="Submit"></p>
+</form>
+<div id="waitdockloc">-</div>
+</div>
+
+<H2>Quick Instruction</H2>
+<UL>
+<LI>Prepare metabolome table file as text file (Not Excel file). Items in the table should be separated by tab (tab-separated text file). Sample file: <a href="metabsinglefile_sample1.txt">here</a></LI>
+<LI>The first column should contain batch names. The header of the column should be "Batch No".</LI>
+<LI>The second column should contain sample IDs. The header of the column should be "Sample ID".</LI>
+</UL>
+
+<img src="metabsinglefile_sample1.jpg">
+
+<hr>
+Contact: golgo8128@yahoo.co.jp
+</body>
+</html>

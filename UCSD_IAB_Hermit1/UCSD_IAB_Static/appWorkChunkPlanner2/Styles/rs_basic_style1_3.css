@@ -1,0 +1,237 @@
+div#whole_user_area {
+
+	background-color: #EFEFEF;
+	overflow: auto;
+
+
+}
+
+div#whole_user_area H1 {
+
+	font-size: 32px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area H2 {
+
+	font-size: 24px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area p {
+
+	font-size: 18px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area div.style1 {
+
+	font-size: 18px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#whole_user_area DL {
+
+	font-size: 18px;
+	font-family: Arial;
+	margin: 0px;
+	padding: 5px;
+
+}
+
+div#user_header {
+
+	margin: 10px 10px 10px;
+	background-color: #DEDEDE;
+
+}
+
+div.user_main {
+
+	margin: 5px 10px 10px;
+	background-color: #DEDEDE;
+	overflow : hidden;
+
+}
+
+div.user_main div.comment {
+	
+	margin-top: 3px;
+	margin-bottom: 1px;
+    margin-left: 8px;
+	margin-right: 8px;
+	padding-top: 6px;
+   	padding-left: 5px;
+	background-color: #DEDEDE;
+	font-size: 14px;
+	
+}
+
+div.user_main span.plan_priority_Critical {
+	
+	color: red;
+	
+}
+
+div.user_main span.plan_priority_Major {
+	
+	color: orange;
+	
+}
+
+div.user_main span.plan_priority_Regular {
+	
+	color: black;
+	
+}
+
+div.user_main span.plan_priority_Minor {
+	
+	color: gray;
+	
+}
+
+div.user_main span.plan_priority_Negligible {
+	
+	color: gray;
+	
+}
+
+
+div.user_main div.plan_id {
+	
+	margin-top: 3px;
+	margin-bottom: 0px;
+    margin-left: 8px;
+	margin-right: 8px;
+	padding-top: 6px;
+   	padding-left: 5px;
+	background-color: #DEDEDE;
+	font-size: 14px;
+	
+}
+
+div.user_main div.plan_title {
+
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 8px;
+	margin-right: 8px;
+   	padding-left: 5px;
+   	padding-top: 2px;
+	padding-bottom: 2px;
+	background-color: #CCCCCC;
+	font-size: 20px;
+	
+}
+
+div.user_main div.plan_status {
+
+	margin-top: 0px;
+	margin-bottom: 0px;
+    margin-left: 8px;
+	margin-right: 8px;
+   	padding-left: 5px;
+	background-color: #CCCCCC;
+	font-size: 16px;
+	
+}
+
+div.user_main div.plan_navi {
+
+	margin-top: 0px;
+   	margin-bottom: 8px;	
+    margin-left: 8px;
+   	margin-right: 8px;
+   	padding-left: 5px;
+   	padding-bottom: 5px;
+	background-color: #CCCCCC;
+	font-size: 16px;
+		
+}
+
+div.user_main span.incomplete {
+
+	color: brown;
+
+}
+
+div.user_main span.canceled {
+
+	color: red;
+}
+
+div.user_main span.completed {
+
+	color: green;
+
+}
+
+div.user_main span.not_started_yet {
+
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: orange;
+
+}
+
+div.user_main span.early_start {
+
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #66FFCC;
+
+}
+
+div.user_main span.late_start {
+
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #CC9933;
+
+}
+
+div.user_main span.early_finish {
+
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #66FFCC;
+
+}
+
+div.user_main span.late_finish {
+
+    padding-left: 5px;
+	padding-right: 5px;
+	background-color: #CC9933;
+
+}
+
+div.user_main span.spent_shorter {
+
+    padding-left: 5px;
+	padding-right: 5px;
+	background-color: #66FFCC;
+
+}
+
+div.user_main span.spent_longer {
+
+    padding-left: 5px;
+	padding-right: 5px;
+	background-color: #CC9933;
+
+}
+
